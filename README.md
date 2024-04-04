@@ -1,4 +1,4 @@
-# Keda Material Registration Odoo Module
+# KeDA Material Registration Odoo Module
 
 ## Overview
 The Keda Material Registration module is an Odoo addon designed to manage material registration within the Keda system. This module allows users to register materials, update their details, and delete them as necessary.
