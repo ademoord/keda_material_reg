@@ -1,0 +1,27 @@
+# Odoo specific
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+
+# Editor-specific
+.vscode/
+.idea/
+
+# Temporary files
+*.bak
+*~
+
+# Compiled files
+*.pyc
+
+# Database files
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# Cache files
+__pycache__/
+.cache/

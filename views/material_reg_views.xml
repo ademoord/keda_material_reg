@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="material_reg_search_view" model="ir.ui.view">
+            <field name="name">material.reg.search</field>
+            <field name="model">material.reg</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="mat_type"/>
+                    <filter name="filter_type" string="Type" domain="[('mat_type', '!=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="material_reg_form_view" model="ir.ui.view">
+            <field name="name">material.reg.form</field>
+            <field name="model">material.reg</field>
+            <field name="arch" type="xml">
+                <form string="Material Registration">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="mat_code"/>
+                            <field name="mat_type"/>
+                            <field name="buy_price"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="material_reg_tree_view" model="ir.ui.view">
+            <field name="name">material.reg.tree</field>
+            <field name="model">material.reg</field>
+            <field name="arch" type="xml">
+                <tree string="Material Registration Tree">
+                    <field name="name"/>
+                    <field name="mat_code"/>
+                    <field name="mat_type"/>
+                    <field name="buy_price"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="material_reg_kanban_view" model="ir.ui.view">
+            <field name="name">material.reg.kanban</field>
+            <field name="model">material.reg</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_card">
+                                    <div class="oe_kanban_card_content">
+                                        <div>
+                                            <strong><field name="name"/></strong>
+                                        </div>
+                                        <div><field name="mat_code"/></div>
+                                        <div><field name="mat_type"/></div>
+                                        <div><field name="buy_price"/></div>
+                                        <div><field name="partner_id"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_material_reg" model="ir.actions.act_window">
+            <field name="name">Material Registration</field>
+            <field name="res_model">material.reg</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <!-- <field name="domain">[('state','in',('po', 'uploaded', 'approved','cancel','rejected'))]</field> -->
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('keda_material_reg.material_reg_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('keda_material_reg.material_reg_form_view')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('keda_material_reg.material_reg_kanban_view')}),
+            ]"/>
+            <!-- <field name="context">{'default_state':'po'}</field> -->
+        </record>
+        
+        <!-- Menu Item -->
+        <menuitem id="menu_material_reg" name="Material" sequence="10" action="action_material_reg"/>
+
+    </data>
+</odoo>
